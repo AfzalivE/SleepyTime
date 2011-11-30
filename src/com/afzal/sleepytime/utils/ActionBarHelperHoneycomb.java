@@ -52,7 +52,7 @@ public class ActionBarHelperHoneycomb extends ActionBarHelper {
             return;
         }
 
-        final MenuItem refreshItem = mOptionsMenu.findItem(R.id.menu_refresh);
+        final MenuItem refreshItem = mOptionsMenu.findItem(R.id.menu_ok);
         if (refreshItem != null) {
             if (refreshing) {
                 if (mRefreshIndeterminateProgressView == null) {
