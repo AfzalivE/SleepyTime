@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.afzal.sleepytime.utils.ActionBarActivity;
 
@@ -30,8 +31,11 @@ public class ResultActivity extends ActionBarActivity {
         	} else {
         		sOldMin = "" + oldMin;
         	}
-        	String inTime =  oldHour + ":" + sOldMin;
-        	Log.d("ST", type + " | " + inTime);
+        	
+        	String selTime =  oldHour + ":" + sOldMin;
+        	TextView inTime = (TextView) findViewById(R.id.intime);
+        	inTime.setText(selTime);
+        	Log.d("ST", type + " | " + selTime);
         	
         	Integer[] newHour = new Integer[4];
 			Integer[] newMin = new Integer[4];
@@ -56,6 +60,13 @@ public class ResultActivity extends ActionBarActivity {
         			break;
         	}
 			
+			TextView[] outTimes = new TextView[4];
+			
+			outTimes[0] = (TextView) findViewById(R.id.outtime1);
+			outTimes[1] = (TextView) findViewById(R.id.outtime2);
+			outTimes[2] = (TextView) findViewById(R.id.outtime3);
+			outTimes[3] = (TextView) findViewById(R.id.outtime4);
+			
 			for (int i = 0 ; i < newHour.length; i++) {
 				String sNewMin = null;
 				if (newMin[i].toString().length() == 1) {
@@ -64,6 +75,7 @@ public class ResultActivity extends ActionBarActivity {
 					sNewMin = "" + newMin[i];
 				}
 				newTimes[i] = newHour[i].toString() + ":" + sNewMin;
+				outTimes[i].setText(newTimes[i]);
 				Log.d("ST", type + " | " + newTimes[i]);
 			}
         }
@@ -72,7 +84,7 @@ public class ResultActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         int versionNumber = Integer.valueOf(android.os.Build.VERSION.SDK);
-        if (versionNumber >= 10) {
+        if (versionNumber >= 11) {
                 super.onStart();
                 ActionBar actionBar = this.getActionBar();
                 actionBar.setDisplayHomeAsUpEnabled(true);
