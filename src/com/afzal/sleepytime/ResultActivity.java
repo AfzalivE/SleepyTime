@@ -23,37 +23,56 @@ public class ResultActivity extends ActionBarActivity {
         	Integer type = (int) extras.getLong("type");
         	Integer oldHour = extras.getInt("hour");
         	Integer oldMin = extras.getInt("min");
-        	Log.d("ST", type + " | " + oldHour + " | " + oldMin);
         	
-        	Integer[] newHour = new Integer[6];
-			Integer[] newMin = new Integer[6];
+        	String sOldMin = null;
+        	if (oldMin.toString().length() == 1) {
+        		sOldMin = "0" + oldMin;
+        	} else {
+        		sOldMin = "" + oldMin;
+        	}
+        	String inTime =  oldHour + ":" + sOldMin;
+        	Log.d("ST", type + " | " + inTime);
+        	
+        	Integer[] newHour = new Integer[4];
+			Integer[] newMin = new Integer[4];
+        	String[] newTimes = new String[4];
         	
 			switch (type) {
         		case 0: 
                 	newHour[0] = oldHour + (oldMin + 90) / 60;
         			newMin[0] = (oldMin + 90) % 60;
-                	for (int i = 1; i < 4; i++) {
+                	for (int i = 1; i < newHour.length; i++) {
                 		newHour[i] = oldHour + (oldMin + (i + 3)* 90) / 60;
                 		newMin[i] = (oldMin + (i + 3) * 90) % 60;
                 	}
         			break;
         		case 1:
-        			for (int i = 0; i < 4; i++) {
+        			for (int i = 0; i < newHour.length; i++) {
 	        			newHour[i] = (oldHour + (oldMin + (i+2) * 90) / 60);
 	        			newMin[i] = (oldMin + (i+2) * 90) % 60;
-	            		Log.d("ST", type + " | " + newHour[i] + " | " + newMin[i]);
         			}
         			break;
         		default:
         			break;
         	}
+			
+			for (int i = 0 ; i < newHour.length; i++) {
+				String sNewMin = null;
+				if (newMin[i].toString().length() == 1) {
+					sNewMin = "0" + newMin[i];
+				} else {
+					sNewMin = "" + newMin[i];
+				}
+				newTimes[i] = newHour[i].toString() + ":" + sNewMin;
+				Log.d("ST", type + " | " + newTimes[i]);
+			}
         }
     }
     
     @Override
     protected void onStart() {
         int versionNumber = Integer.valueOf(android.os.Build.VERSION.SDK);
-        if (versionNumber >= 11) {
+        if (versionNumber >= 10) {
                 super.onStart();
                 ActionBar actionBar = this.getActionBar();
                 actionBar.setDisplayHomeAsUpEnabled(true);
