@@ -10,6 +10,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.afzal.sleepytime.utils.ActionBarActivity;
+import com.bugsense.trace.BugSenseHandler;
 
 public class SleepyTimeActivity extends ActionBarActivity {
     /** Called when the activity is first created. */
@@ -23,6 +24,9 @@ public class SleepyTimeActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        BugSenseHandler.setup(this, "aecd001b");
+
         timeType = (Spinner) findViewById(R.id.timetype);
         time = (TimePicker) findViewById(R.id.time);        
     }
