@@ -46,13 +46,13 @@ public class ResultActivity extends ActionBarActivity {
                 	newHour[0] = oldHour + (oldMin + 90) / 60;
         			newMin[0] = (oldMin + 90) % 60;
                 	for (int i = 1; i < newHour.length; i++) {
-                		newHour[i] = oldHour + (oldMin + (i + 3)* 90) / 60;
+                		newHour[i] = (oldHour + (oldMin + (i + 3)* 90) / 60) % 24;
                 		newMin[i] = (oldMin + (i + 3) * 90) % 60;
                 	}
         			break;
         		case 1:
         			for (int i = 0; i < newHour.length; i++) {
-	        			newHour[i] = (oldHour + (oldMin + (i+2) * 90) / 60);
+	        			newHour[i] = (oldHour + (oldMin + (i+2) * 90) / 60) % 24;
 	        			newMin[i] = (oldMin + (i+2) * 90) % 60;
         			}
         			break;
