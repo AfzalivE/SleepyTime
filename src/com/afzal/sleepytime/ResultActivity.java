@@ -73,6 +73,7 @@ public class ResultActivity extends ActionBarActivity {
 					sNewMin = "0" + newMin[i];
 				} else {
 					sNewMin = "" + newMin[i];
+
 				}
 				newTimes[i] = newHour[i].toString() + ":" + sNewMin;
 				outTimes[i].setText(newTimes[i]);

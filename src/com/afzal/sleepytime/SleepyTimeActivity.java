@@ -1,6 +1,7 @@
 package com.afzal.sleepytime;
 
 import android.content.Intent;
+import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,9 @@ public class SleepyTimeActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        Spinner btn = (Spinner) findViewById(R.id.timetype);
+        btn.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0xFFAA0000));
         
         BugSenseHandler.setup(this, "aecd001b");
 
